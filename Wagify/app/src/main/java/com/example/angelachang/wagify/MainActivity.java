@@ -19,6 +19,15 @@ import android.view.ViewGroup;
 
 import android.widget.TextView;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
+import layout.Details;
+import layout.History;
+import layout.Ongoing;
+import layout.Wagify;
+
 public class MainActivity extends AppCompatActivity {
 
     /**
@@ -129,6 +138,7 @@ public class MainActivity extends AppCompatActivity {
      */
     public class SectionsPagerAdapter extends FragmentPagerAdapter {
 
+        List<String> tabs = new ArrayList<>(Arrays.asList("Ongoing", "Details", "History", "Wagify"));
         public SectionsPagerAdapter(FragmentManager fm) {
             super(fm);
         }
@@ -137,24 +147,31 @@ public class MainActivity extends AppCompatActivity {
         public Fragment getItem(int position) {
             // getItem is called to instantiate the fragment for the given page.
             // Return a PlaceholderFragment (defined as a static inner class below).
-            return PlaceholderFragment.newInstance(position + 1);
+            if (tabs.get(position).equals("Details")) {
+                return Details.newInstance("", "");
+            }
+            if (tabs.get(position).equals("History")) {
+                return History.newInstance("", "");
+            }
+            if (tabs.get(position).equals("Ongoing")) {
+                return Ongoing.newInstance("", "");
+            }
+            if (tabs.get(position).equals("Wagify")) {
+                return Wagify.newInstance("", "");
+            }
+            return null;
         }
 
         @Override
         public int getCount() {
             // Show 3 total pages.
-            return 3;
+            return tabs.size();
         }
 
         @Override
         public CharSequence getPageTitle(int position) {
-            switch (position) {
-                case 0:
-                    return "SECTION 1";
-                case 1:
-                    return "SECTION 2";
-                case 2:
-                    return "SECTION 3";
+            if (tabs.size() > position) {
+                return tabs.get(position);
             }
             return null;
         }
