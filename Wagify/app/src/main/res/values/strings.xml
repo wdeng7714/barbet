@@ -19,4 +19,9 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="create_wager">Create wager</string>
+    <string name="amount">Amount</string>
+    <string name="participants">Participants</string>
+    <string name="description_of_task">Description of task</string>
+    <string name="send_wager">Send wager</string>
 </resources>

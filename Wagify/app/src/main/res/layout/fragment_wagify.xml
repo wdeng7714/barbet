@@ -2,12 +2,56 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="layout.Wagify">
+    tools:context="layout.Wagify"
+    android:weightSum="1"
+    android:id="@+id/wagifyContent">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
+
+    <LinearLayout
+        android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_gravity="center"
+        android:padding="25dp"
+        android:weightSum="1">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="@string/create_wager"
+            android:id="@+id/title"
+            android:layout_gravity="center_horizontal" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="number"
+            android:ems="10"
+            android:id="@+id/amount"
+            android:hint="@string/amount" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/participants"
+            android:hint="@string/participants" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="93dp"
+            android:inputType="textMultiLine"
+            android:ems="10"
+            android:id="@+id/description"
+            android:hint="@string/description_of_task"
+            android:lines="2" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/send_wager"
+            android:id="@+id/button" />
+    </LinearLayout>
 
 </FrameLayout>
