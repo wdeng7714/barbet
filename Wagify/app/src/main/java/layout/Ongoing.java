@@ -65,7 +65,20 @@ public class Ongoing extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_ongoing, container, false);
+        View v = inflater.inflate(R.layout.fragment_ongoing, container, false);
+        return v;
+        //        ListView li = (ListView) v.findViewById(R.id.detailsList);
+//        ArrayList detailsArray = new ArrayList<String>();
+//        ArrayAdapter adapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_item, detailsArray);
+//        li.setAdapter(adapter);
+//        detailsArray.add("Name: name".toString());
+//        detailsArray.add("Date: date");
+//        detailsArray.add("Participants: participants");
+//        detailsArray.add("Amount: amount");
+//        detailsArray.add("Task: task");
+
+
+//        adapter.notifyDataSetChanged();
     }
 
     // TODO: Rename method, update argument and hook method into UI event
