@@ -92,16 +92,16 @@ public class Ongoing extends Fragment {
         for (int i = 0; i < Ongoing.wagers.size(); ++i) {
             parent.addView(makeCard(Ongoing.wagers.get(i)));
         }
-        FriendlyWager fw = new FriendlyWager(5.00, "16/09/17", "Win the hackathon", "Testing", new ArrayList<String>(Arrays.asList("Angela", "Wendy", "Sam")));
-        parent.addView(makeCard(fw));
-        parent.addView(makeCard(fw));
-        parent.addView(makeCard(fw));
-        parent.addView(makeCard(fw));
-        parent.addView(makeCard(fw));
-        parent.addView(makeCard(fw));
-        parent.addView(makeCard(fw));
-        parent.addView(makeCard(fw));
-        parent.addView(makeCard(fw));
+        FriendlyWager fw1 = new FriendlyWager(5.00, "16-09-17", "If I do not win this hackathon then I will win this bet as a consolation prize", "Hack the North", new ArrayList<String>(Arrays.asList("Angela", "Wendy")));
+        FriendlyWager fw2 = new FriendlyWager(10.99, "16-09-17", "If I get a 90 on my exam I win, otherwise Sam wins", "MATH452 Final", new ArrayList<String>(Arrays.asList("Wendy", "Sam")));
+        FriendlyWager fw3 = new FriendlyWager(195.10, "16-09-17", "If I win the lottery then Wendy wins", "LOTTO649", new ArrayList<String>(Arrays.asList("Wendy", "Angela")));
+        FriendlyWager fw4 = new FriendlyWager(255.43, "16-09-17", "If the Sens win the Stanley cup, I lose.", "Hockey Night", new ArrayList<String>(Arrays.asList("Wendy", "Angela", "Sam")));
+
+        parent.addView(makeCard(fw1));
+        parent.addView(makeCard(fw2));
+        parent.addView(makeCard(fw3));
+        parent.addView(makeCard(fw4));
+
         return v;
     }
     public CardView makeCard(FriendlyWager fw){
@@ -129,6 +129,7 @@ public class Ongoing extends Fragment {
         //adds name
         tv = new TextView(getContext());
         tv.setText(fw.getmName());
+        tv.setPadding(0, 10, 0, 20);
         tv.setTextColor(TITLE_COLOR);
         tv.setTypeface(Typeface.DEFAULT_BOLD);
         tv.setTextSize(FONT_1);
