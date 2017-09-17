@@ -1,27 +1,21 @@
 package layout;
 
-import android.app.ActionBar;
-import android.content.Context;
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.CardView;
-import android.support.v7.widget.LinearLayoutCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.LinearLayout;
-import android.widget.ListView;
 import android.widget.TextView;
 
 import com.example.angelachang.wagify.FriendlyWager;
 import com.example.angelachang.wagify.R;
 
-import java.lang.reflect.Array;
-import java.lang.reflect.Field;
-import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -38,12 +32,16 @@ public class Ongoing extends Fragment {
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
-
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
 
     private OnFragmentInteractionListener mListener;
+    private final int FONT_1 = 18;
+    private final int TITLE_COLOR = Color.BLACK;
+    private final int BODY_COLOR = Color.DKGRAY;
+    private final int CARD_BG = Color.parseColor("#ebf0ff");
+
 
     public Ongoing() {
         // Required empty public constructor
@@ -87,7 +85,7 @@ public class Ongoing extends Fragment {
 //        li.setAdapter(adapter);
         LinearLayout parent = (LinearLayout) v.findViewById(R.id.LinearCardLayout);
 
-        FriendlyWager fw = new FriendlyWager(5.0, "16/09/17", "Win the hackathon", "Testing", new ArrayList<String>(Arrays.asList("Angela", "Wendy")));
+        FriendlyWager fw = new FriendlyWager(5.00, "16/09/17", "Win the hackathon", "Testing", new ArrayList<String>(Arrays.asList("Angela", "Wendy", "Sam")));
         parent.addView(makeCard(fw));
         parent.addView(makeCard(fw));
         parent.addView(makeCard(fw));
@@ -104,7 +102,9 @@ public class Ongoing extends Fragment {
         CardView cv = new CardView(getContext());
         cv.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT));
         cv.setCardElevation(15);
+        cv.setCardBackgroundColor(CARD_BG);
         cv.setUseCompatPadding(true);
+        cv.setPadding(10, 10, 10, 10);
         //adds linear layout to the card
         LinearLayout li = new LinearLayout(getContext());
         li.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT));
@@ -112,22 +112,44 @@ public class Ongoing extends Fragment {
 
         cv.addView(li);
 
-        //adds textviews to the linear layout
+        //adds amount
         TextView tv = new TextView(getContext());
-        tv.setText(fw.getmName() + " - " + fw.getDate());
+        tv.setText(String.format("$%.2f", + fw.getAmount().doubleValue()));
+        tv.setTextColor(TITLE_COLOR);
+        tv.setTextSize(FONT_1);
+        tv.setTypeface(Typeface.DEFAULT_BOLD);
+        li.addView(tv);
+        //adds name
+        tv = new TextView(getContext());
+        tv.setText(fw.getmName());
+        tv.setTextColor(TITLE_COLOR);
+        tv.setTypeface(Typeface.DEFAULT_BOLD);
+        tv.setTextSize(FONT_1);
+        tv.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
         li.addView(tv);
 
         tv = new TextView(getContext());
-        tv.setText("$" + fw.getAmount());
+        tv.setTextColor(BODY_COLOR);
+        tv.setText("Wager with: " + fw.getmParticipants().toString());
         li.addView(tv);
 
         tv = new TextView(getContext());
-        tv.setText("Wager with " + fw.getmParticipants().toString());
+        tv.setTextColor(BODY_COLOR);
+        tv.setText("Date: "+ fw.getDate());
         li.addView(tv);
 
         tv = new TextView(getContext());
-        tv.setText(fw.getTask());
+        tv.setTextColor(BODY_COLOR);
+        tv.setText("Task: " + fw.getTask());
+        tv.setPadding(0,0,0,50);
         li.addView(tv);
+
+        Button btnDetails = new Button(getContext());
+        btnDetails.setBackgroundColor(Color.WHITE);
+        btnDetails.setTextSize(FONT_1-5);
+        btnDetails.setText("Details");
+        li.addView(btnDetails);
+
 
         return cv;
     }
