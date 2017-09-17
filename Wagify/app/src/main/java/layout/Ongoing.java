@@ -1,14 +1,29 @@
 package layout;
 
+import android.app.ActionBar;
 import android.content.Context;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.CardView;
+import android.support.v7.widget.LinearLayoutCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.LinearLayout;
+import android.widget.ListView;
+import android.widget.TextView;
 
+import com.example.angelachang.wagify.FriendlyWager;
 import com.example.angelachang.wagify.R;
+
+import java.lang.reflect.Array;
+import java.lang.reflect.Field;
+import java.lang.reflect.Method;
+import java.util.ArrayList;
+import java.util.Arrays;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -66,21 +81,56 @@ public class Ongoing extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_ongoing, container, false);
-        return v;
-        //        ListView li = (ListView) v.findViewById(R.id.detailsList);
+//        ListView li = (ListView) v.findViewById(R.id.ongoingList);
 //        ArrayList detailsArray = new ArrayList<String>();
 //        ArrayAdapter adapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_item, detailsArray);
 //        li.setAdapter(adapter);
-//        detailsArray.add("Name: name".toString());
-//        detailsArray.add("Date: date");
-//        detailsArray.add("Participants: participants");
-//        detailsArray.add("Amount: amount");
-//        detailsArray.add("Task: task");
+        LinearLayout parent = (LinearLayout) v.findViewById(R.id.LinearCardLayout);
 
-
-//        adapter.notifyDataSetChanged();
+        FriendlyWager fw = new FriendlyWager(5.0, "16/09/17", "Win the hackathon", "Testing", new ArrayList<String>(Arrays.asList("Angela", "Wendy")));
+        parent.addView(makeCard(fw));
+        parent.addView(makeCard(fw));
+        parent.addView(makeCard(fw));
+        parent.addView(makeCard(fw));
+        parent.addView(makeCard(fw));
+        parent.addView(makeCard(fw));
+        parent.addView(makeCard(fw));
+        parent.addView(makeCard(fw));
+        parent.addView(makeCard(fw));
+        return v;
     }
+    public CardView makeCard(FriendlyWager fw){
+        //makes a card
+        CardView cv = new CardView(getContext());
+        cv.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT));
+        cv.setCardElevation(15);
+        cv.setUseCompatPadding(true);
+        //adds linear layout to the card
+        LinearLayout li = new LinearLayout(getContext());
+        li.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT));
+        li.setOrientation(LinearLayout.VERTICAL);
 
+        cv.addView(li);
+
+        //adds textviews to the linear layout
+        TextView tv = new TextView(getContext());
+        tv.setText(fw.getmName() + " - " + fw.getDate());
+        li.addView(tv);
+
+        tv = new TextView(getContext());
+        tv.setText("$" + fw.getAmount());
+        li.addView(tv);
+
+        tv = new TextView(getContext());
+        tv.setText("Wager with " + fw.getmParticipants().toString());
+        li.addView(tv);
+
+        tv = new TextView(getContext());
+        tv.setText(fw.getTask());
+        li.addView(tv);
+
+        return cv;
+    }
     // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(Uri uri) {
         if (mListener != null) {
