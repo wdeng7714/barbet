@@ -11,47 +11,151 @@
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_gravity="center"
-        android:padding="25dp"
+        android:layout_height="345dp"
+        android:layout_gravity="top|center_horizontal"
+        android:padding="10dp"
         android:weightSum="1">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="@string/create_wager"
-            android:id="@+id/title"
-            android:layout_gravity="center_horizontal" />
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <AutoCompleteTextView
+                android:id="@+id/txtName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Name of Wager"
+                android:inputType="text"
+                android:maxLines="1"
+                android:singleLine="true"
+                android:textSize="16dp"
+                android:textStyle="bold" />
+        </android.support.design.widget.TextInputLayout>
 
-        <EditText
+        <LinearLayout
+            android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="number"
-            android:ems="10"
-            android:id="@+id/amount"
-            android:hint="@string/amount" />
+            android:gravity="center">
 
-        <EditText
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+
+                <AutoCompleteTextView
+                    android:id="@+id/txtAmount"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Amount"
+                    android:inputType="numberDecimal"
+                    android:maxLines="1"
+                    android:layout_below="@+id/textView"
+                    android:layout_toRightOf="@+id/textView"
+                    android:layout_toEndOf="@+id/textView"
+                    android:selectAllOnFocus="true"
+                    android:text="$   "
+                    android:textSize="16dp" />
+            </android.support.design.widget.TextInputLayout>
+        </LinearLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <AutoCompleteTextView
+                android:id="@+id/txtParticipants"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Participants"
+                android:inputType="textMultiLine"
+                android:maxLines="5"
+                android:textIsSelectable="false"
+                android:textSize="16dp" />
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <AutoCompleteTextView
+                android:id="@+id/txtTask"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Task"
+                android:inputType="textMultiLine"
+                android:maxLines="10"
+                android:textSize="16dp" />
+        </android.support.design.widget.TextInputLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/participants"
-            android:hint="@string/participants" />
+            android:paddingTop="10dp"
+            android:weightSum="1">
 
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="93dp"
-            android:inputType="textMultiLine"
-            android:ems="10"
-            android:id="@+id/description"
-            android:hint="@string/description_of_task"
-            android:lines="2" />
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="289dp"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Notification"
+                    android:id="@+id/textView2"
+                    android:textStyle="bold"
+                    android:textColor="#000000"
+                    android:textSize="16dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Get notifications when this bet is resolved"
+                    android:id="@+id/textView3" />
+            </LinearLayout>
+
+            <Switch
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/switch1"
+                android:layout_weight="0.64" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="61dp"
+        android:layout_weight="0.47"
+        android:layout_gravity="right|bottom"
+        android:background="@color/design_fab_stroke_end_inner_color">
 
         <Button
-            android:layout_width="match_parent"
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/send_wager"
-            android:id="@+id/button" />
-    </LinearLayout>
+            android:text="Cancel"
+            android:id="@+id/button"
+            android:layout_gravity="left|center_vertical"
+            android:background="@android:color/transparent"
+            android:paddingRight="15dp"
+            android:paddingLeft="15dp"
+            android:singleLine="true"
+            android:textColor="@color/colorPrimary" />
+
+        <Button
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Send"
+            android:id="@+id/button2"
+            android:layout_gravity="right|center_vertical"
+            android:background="@android:color/transparent"
+            android:paddingRight="15dp"
+            android:paddingLeft="15dp"
+            android:textColor="@color/colorPrimary" />
+    </FrameLayout>
 
 </FrameLayout>

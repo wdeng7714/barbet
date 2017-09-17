@@ -74,7 +74,7 @@ public class Wagify extends Fragment {
             mListener.onFragmentInteraction(uri);
         }
     }
-//
+    //
 //    @Override
 //    public void onAttach(Context context) {
 //        super.onAttach(context);
