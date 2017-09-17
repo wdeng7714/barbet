@@ -17,7 +17,8 @@
         android:padding="0dp"
         android:textSize="15dp"
         android:layout_weight="0.34"
-        android:weightSum="1">
+        android:weightSum="1"
+        android:tag="detailsFragment">
 
         <LinearLayout
             android:orientation="horizontal"

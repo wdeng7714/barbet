@@ -20,6 +20,7 @@ import com.example.angelachang.wagify.R;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -44,6 +45,7 @@ public class Ongoing extends Fragment {
     private final int BODY_COLOR = Color.DKGRAY;
     private final int CARD_BG = Color.parseColor("#ebf0ff");
 
+    public static List<FriendlyWager> wagers = new ArrayList<FriendlyWager>();
     public Ongoing() {
         // Required empty public constructor
     }
@@ -87,6 +89,9 @@ public class Ongoing extends Fragment {
 //        li.setAdapter(adapter);
         LinearLayout parent = (LinearLayout) v.findViewById(R.id.LinearCardLayout);
 
+        for (int i = 0; i < Ongoing.wagers.size(); ++i) {
+            parent.addView(makeCard(Ongoing.wagers.get(i)));
+        }
         FriendlyWager fw = new FriendlyWager(5.00, "16/09/17", "Win the hackathon", "Testing", new ArrayList<String>(Arrays.asList("Angela", "Wendy", "Sam")));
         parent.addView(makeCard(fw));
         parent.addView(makeCard(fw));
@@ -156,16 +161,18 @@ public class Ongoing extends Fragment {
         btnDetails.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                setupDetails(ffw);
+                ((TextView) Details.sInflated.findViewById(R.id.txtName)).setText(ffw.getmName());
+                ((TextView) Details.sInflated.findViewById(R.id.txtAmount)).setText((String.format("$%.2f", ffw.getAmount())));
+                ((TextView) Details.sInflated.findViewById(R.id.txtDate)).setText(ffw.getDate());
+                ((TextView) Details.sInflated.findViewById(R.id.txtParticipants)).setText(ffw.getmParticipants().toString());
+                ((TextView) Details.sInflated.findViewById(R.id.txtTask)).setText(ffw.getTask());
                 MainActivity.mViewPager.setCurrentItem(1);
             }
         });
 
         return cv;
     }
-    public void setupDetails(FriendlyWager ffw){
 
-    }
     // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(Uri uri) {
         if (mListener != null) {

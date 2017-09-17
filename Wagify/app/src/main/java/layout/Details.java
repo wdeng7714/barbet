@@ -8,8 +8,10 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 
+import com.example.angelachang.wagify.FriendlyWager;
 import com.example.angelachang.wagify.R;
 
 
@@ -32,9 +34,12 @@ public class Details extends Fragment {
     private String mParam2;
 
     private OnFragmentInteractionListener mListener;
+    private FriendlyWager mWager = null;
 
+    public static View sInflated;
     public Details() {
         // Required empty public constructor
+
     }
 
     /**
@@ -49,8 +54,9 @@ public class Details extends Fragment {
     public static Details newInstance(String param1, String param2) {
         Details fragment = new Details();
         Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
+
+//        args.putString(ARG_PARAM1, param1);
+//        args.putString(ARG_PARAM2, param2);
         fragment.setArguments(args);
         return fragment;
     }
@@ -70,6 +76,11 @@ public class Details extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_details, container, false);
+        sInflated = v;
+//        if (mWager != null) {
+//            TextView txtName = (TextView) v.findViewById(R.id.txtName);
+//            txtName.setText(getArguments().getString("Name"));
+//        }
         return v;
     }
 

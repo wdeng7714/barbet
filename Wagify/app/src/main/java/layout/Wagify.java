@@ -7,8 +7,16 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.Switch;
+import android.widget.TextView;
+import android.widget.ToggleButton;
 
+import com.example.angelachang.wagify.FriendlyWager;
+import com.example.angelachang.wagify.MainActivity;
 import com.example.angelachang.wagify.R;
+
+import java.util.Arrays;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -65,7 +73,34 @@ public class Wagify extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_wagify, container, false);
+        final View v = inflater.inflate(R.layout.fragment_wagify, container, false);
+        Button btnSend = (Button) v.findViewById(R.id.btnSend);
+        btnSend.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                FriendlyWager fw = new FriendlyWager( Double.parseDouble(((TextView) v.findViewById(R.id.txtAmount)).getText().toString()),
+                        "17-09-2017",
+                        ((TextView) v.findViewById(R.id.txtTask)).getText().toString(),
+                        ((TextView) v.findViewById(R.id.txtName)).getText().toString(),
+                        Arrays.asList(((TextView) v.findViewById(R.id.txtParticipants)).getText().toString().split("\n")));
+                Ongoing.wagers.add(fw);
+                Fragment frg = Ongoing.newInstance("", "");
+                final android.support.v4.app.FragmentTransaction ft = getFragmentManager().beginTransaction();
+                ft.detach(frg);
+                ft.attach(frg);
+                ft.commit();
+
+                ((TextView) v.findViewById(R.id.txtName)).setText("");
+                ((TextView) v.findViewById(R.id.txtAmount)).setText("");
+                ((TextView) v.findViewById(R.id.txtTask)).setText("");
+                ((TextView) v.findViewById(R.id.txtParticipants)).setText("");
+                ((Switch) v.findViewById(R.id.swtNotifcations)).setChecked(false);
+
+                MainActivity.mViewPager.setCurrentItem(0);
+            }
+        });
+
+        return v;
     }
 
     // TODO: Rename method, update argument and hook method into UI event
