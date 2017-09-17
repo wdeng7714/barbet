@@ -5,6 +5,7 @@ import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.view.ViewPager;
 import android.support.v7.widget.CardView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,6 +15,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.angelachang.wagify.FriendlyWager;
+import com.example.angelachang.wagify.MainActivity;
 import com.example.angelachang.wagify.R;
 
 import java.util.ArrayList;
@@ -42,7 +44,6 @@ public class Ongoing extends Fragment {
     private final int BODY_COLOR = Color.DKGRAY;
     private final int CARD_BG = Color.parseColor("#ebf0ff");
 
-
     public Ongoing() {
         // Required empty public constructor
     }
@@ -62,6 +63,7 @@ public class Ongoing extends Fragment {
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
         fragment.setArguments(args);
+
         return fragment;
     }
 
@@ -150,8 +152,19 @@ public class Ongoing extends Fragment {
         btnDetails.setText("Details");
         li.addView(btnDetails);
 
+        final FriendlyWager ffw = fw;
+        btnDetails.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                setupDetails(ffw);
+                MainActivity.mViewPager.setCurrentItem(1);
+            }
+        });
 
         return cv;
+    }
+    public void setupDetails(FriendlyWager ffw){
+
     }
     // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(Uri uri) {
